@@ -11,7 +11,7 @@
  Target Server Version : 100133
  File Encoding         : 65001
 
- Date: 27/09/2018 23:23:26
+ Date: 29/09/2018 00:51:16
 */
 
 SET NAMES utf8mb4;
@@ -36,6 +36,6 @@ CREATE TABLE `tbl_admin`  (
 -- ----------------------------
 -- Records of tbl_admin
 -- ----------------------------
-INSERT INTO `tbl_admin` VALUES (1, 'vuduchong', '$2y$12$p3GO3flmr8Z4pqipji/yW.ECiNvlQgW9Cwk1St1UuNxqEPUpLqH5m', 'vuduchong@gmail.com', NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_admin` VALUES (1, 'vuduchong', '$2y$12$gzo14DU/rd8Hqy5kNTzvQ.8d7QiSLVszXCaiL7Y4dkT5jkwEwiH3a', 'vuduchong@gmail.com', NULL, NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

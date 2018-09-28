@@ -7,43 +7,46 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Validator;
 use Auth;
+use Hash;
 
 class AuthController extends Controller
 {
-    public function login()
-    {
-    	return View::make('admin.login');
-    }
-
     public function auth(Request $request)
     {
-    	$this->validate($request, [
-			'email'    => 'required|email',
-			'password' => 'required|min:3'
-    	],
-    	[
-			'required' => ':attribute là bắt buộc',
-			'email'    => ':attribute phải đúng định dạng',
-			'min'      => ':attribute không được nhỏ hơn :min'
-    	],
-    	[
-			'email'    => 'Email',
-			'password' => 'Password'
-    	]);
+        if($request->isMethod('get')) {
 
-    	$user_data = [
-			'email'    => $request->get('email'),
-			'password' => $request->get('password')
-    	];
+            return View::make('admin.login');
 
-    	if(Auth::attempt($user_data)) {
+        } else {
 
-    		return 'Login thành công';
+            $this->validate($request,
+                [
+                    'email'    => 'required|email',
+                    'password' => 'required|min:3'
+                ],
+                [
+                    'required' => ':attribute là bắt buộc',
+                    'email'    => ':attribute phải đúng định dạng',
+                    'min'      => ':attribute không được nhỏ hơn :min'
+                ],
+                [
+                    'email'    => 'Email',
+                    'password' => 'Password'
+                ]
+            );
 
-    	} else {
+            $login = $request->only('email', 'password');
 
-    		return 'Login thất bại';
+            if(!Auth::attempt($login)) {
 
-    	}
+                return back()->with('error', 'Đăng nhập thất bại');
+
+            } else {
+
+                return 'Login thành công';
+
+            }
+        }
+    	
     }
 }

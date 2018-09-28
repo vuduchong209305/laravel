@@ -40,7 +40,7 @@
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
 
-                    @include('blocks.error')
+                    @include('blocks.notification')
 
                     <div class="row">
                         <div class="col-xs-8">
@@ -57,8 +57,6 @@
                     </div>
                     
                 </form>
-
-                
 
                 <div class="social-auth-links text-center">
                     <p>- OR -</p>

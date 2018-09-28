@@ -12,7 +12,7 @@
 */
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 
-	Route::get('login', 'AuthController@login');
+	Route::get('login', 'AuthController@auth');
 	Route::post('login', 'AuthController@auth');
 	Route::resource('index', 'UserController');
 
