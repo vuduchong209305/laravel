@@ -12,8 +12,14 @@
 */
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 
-	Route::get('login', 'AuthController@auth');
+	Route::get('login', ['as' => 'login', 'uses' => 'AuthController@auth']);
 	Route::post('login', 'AuthController@auth');
-	Route::resource('index', 'UserController');
+	Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 
+	Route::group(['middleware' => 'adminLogin'], function() {
+
+		Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
+		Route::resource('index', 'UserController');
+
+	});
 });

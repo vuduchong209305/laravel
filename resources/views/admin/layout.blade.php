@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>@yield('title')</title>
         <!-- Tell the browser to be responsive to screen width -->
+        <link rel="icon" type="image/png" sizes="16x16" href="public/admin/img/icon.png">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <base href="{{ asset('') }}">
         <meta id="csrf-token" name="csrf-token" value="{{ csrf_token() }}">
@@ -29,13 +30,7 @@
         <link rel="stylesheet" href="public/admin/css/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="public/admin/css/bootstrap3-wysihtml5.min.css">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-        <!-- Google Font -->
+        
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -261,14 +256,14 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="public/admin/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs">{{ Auth::user()->username }}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img src="public/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                         <p>
-                                            Alexander Pierce - Web Developer
+                                            {{ Auth::user()->username }}
                                             <small>Member since Nov. 2012</small>
                                         </p>
                                     </li>
@@ -293,7 +288,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -316,7 +311,7 @@
                             <img src="public/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p>{{ Auth::user()->username }}</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>

@@ -14,8 +14,11 @@ class AuthController extends Controller
     public function auth(Request $request)
     {
         if($request->isMethod('get')) {
-
-            return View::make('admin.login');
+            if(Auth::check()) {
+                return redirect()->route('home');
+            } else {
+                return View::make('admin.login');
+            }
 
         } else {
 
@@ -27,7 +30,7 @@ class AuthController extends Controller
                 [
                     'required' => ':attribute là bắt buộc',
                     'email'    => ':attribute phải đúng định dạng',
-                    'min'      => ':attribute không được nhỏ hơn :min'
+                    'min'      => ':attribute phải hơn :min ký tự'
                 ],
                 [
                     'email'    => 'Email',
@@ -43,10 +46,15 @@ class AuthController extends Controller
 
             } else {
 
-                return 'Login thành công';
+                return redirect()->route('home');
 
             }
         }
-    	
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
