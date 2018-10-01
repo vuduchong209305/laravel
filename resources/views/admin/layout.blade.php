@@ -41,7 +41,7 @@
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
-                <a href="index2.html" class="logo">
+                <a href="{{ route('home') }}" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
@@ -334,7 +334,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">MAIN NAVIGATION</li>
-                        <li class="active treeview">
+                        <li class="treeview {{ isset($active) && ($active == 'user' || $active == 'role') ? 'active' : '' }}">
                             <a href="#">
                             <i class="fa fa-dashboard"></i> <span>Ban Quản Trị</span>
                             <span class="pull-right-container">
@@ -342,8 +342,8 @@
                             </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="{{ $active == 'user' ? 'active' : '' }}"><a href="{{ route('user_index') }}"><i class="fa fa-circle-o"></i>Danh Sách</a></li>
-                                <li class="{{ $active == 'role' ? 'active' : '' }}"><a href="{{ route('role_index') }}"><i class="fa fa-circle-o"></i>Phân Quyền</a></li>
+                                <li class="{{ isset($active) && $active == 'user' ? 'active' : '' }}"><a href="{{ route('user_index') }}"><i class="fa fa-circle-o"></i>Danh Sách</a></li>
+                                <li class="{{ isset($active) && $active == 'role' ? 'active' : '' }}"><a href="{{ route('role_index') }}"><i class="fa fa-circle-o"></i>Phân Quyền</a></li>
                             </ul>
                         </li>
                         <li class="treeview">

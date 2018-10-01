@@ -31,6 +31,12 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $this->data['module'] = [
+            'User' => ['index', 'add', 'edit', 'delete'],
+            'News' => ['index', 'add', 'edit', 'delete'],
+            'Member' => ['index', 'add', 'edit', 'delete']
+        ];
+
         return view('admin.role.add', $this->data);
     }
 

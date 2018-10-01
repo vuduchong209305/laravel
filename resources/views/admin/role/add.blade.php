@@ -49,38 +49,17 @@
                             </div>
                         </div>
                         
+                        @foreach($module as $key => $items)
                         <div>
-                            <span class="module badge">User</span>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> index</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> add</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> edit</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> delete</label>
+                            <span class="module badge">{{ $key }}</span>
+                            @foreach($items as $item)
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="list_role[{{ $key }}][]" class="checkBoxClass"> {{ $item }}
+                            </label>
+                            @endforeach
                         </div>
                         <br>
-                        <div>
-                            <span class="module badge">News</span>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> index</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> add</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> edit</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> delete</label>
-                        </div>
-                        <br>
-                        <div>
-                            <span class="module badge">Post</span>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> index</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> add</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> edit</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> delete</label>
-                        </div>
-                        <br>
-                        <div>
-                            <span class="module badge">Customer</span>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> index</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> add</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> edit</label>
-                            <label class="checkbox-inline"><input type="checkbox" class="checkBoxClass"> delete</label>
-                        </div>
-                        
+                        @endforeach
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">

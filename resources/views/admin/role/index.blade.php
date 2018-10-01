@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Danh sách BQT')
+@section('title', 'Danh sách quyền')
 @section('content')
 
 <!-- DataTables -->
