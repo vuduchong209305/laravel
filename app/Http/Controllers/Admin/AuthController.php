@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
-use Validator;
 use Auth;
-use Hash;
 
 class AuthController extends Controller
 {

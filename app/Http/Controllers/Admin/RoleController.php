@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\User;
+use Illuminate\Support\Facades\View;
 use App\Models\Admin\Role;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
     public function __construct()
     {
-        $this->data['active'] = 'user';
+        $this->data['active'] = 'role';
     }
     /**
      * Display a listing of the resource.
@@ -20,9 +20,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->data['list_record'] = User::select('users.id', 'users.username', 'users.avatar', 'users.phone', 'users.email', 'r.role_name')->join('roles as r', 'users.role', '=', 'r.id')->get();
-
-        return view('admin.user.index', $this->data);
+    	$this->data['list_record'] = Role::select('*')->get();
+        return view('admin.role.index', $this->data);
     }
 
     /**
@@ -32,8 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $this->data['list_role'] = Role::select('id', 'role_name')->where('status', 1)->get();
-        return view('admin.user.add', $this->data);
+        return view('admin.role.add', $this->data);
     }
 
     /**

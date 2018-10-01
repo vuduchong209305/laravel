@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,16 +20,21 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
             folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="public/admin/css/_all-skins.min.css">
-        <!-- Morris chart -->
-        <link rel="stylesheet" href="public/admin/css/morris.css">
-        <!-- jvectormap -->
-        <link rel="stylesheet" href="public/admin/css/jquery-jvectormap.css">
+
         <!-- Date Picker -->
         <link rel="stylesheet" href="public/admin/css/bootstrap-datepicker.min.css">
         <!-- Daterange picker -->
         <link rel="stylesheet" href="public/admin/css/daterangepicker.css">
         <!-- bootstrap wysihtml5 - text editor -->
         <link rel="stylesheet" href="public/admin/css/bootstrap3-wysihtml5.min.css">
+
+        <link rel="stylesheet" href="public/admin/css/custom.css">
+        <!-- jQuery 3 -->
+        <script src="public/admin/js/jquery.min.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="public/admin/js/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
         
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
@@ -331,14 +336,14 @@
                         <li class="header">MAIN NAVIGATION</li>
                         <li class="active treeview">
                             <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            <i class="fa fa-dashboard"></i> <span>Ban Quản Trị</span>
                             <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                             </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                                <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                                <li class="{{ $active == 'user' ? 'active' : '' }}"><a href="{{ route('user_index') }}"><i class="fa fa-circle-o"></i>Danh Sách</a></li>
+                                <li class="{{ $active == 'role' ? 'active' : '' }}"><a href="{{ route('role_index') }}"><i class="fa fa-circle-o"></i>Phân Quyền</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -686,24 +691,15 @@
             <div class="control-sidebar-bg"></div>
         </div>
         <!-- ./wrapper -->
-        <!-- jQuery 3 -->
-        <script src="public/admin/js/jquery.min.js"></script>
-        <!-- jQuery UI 1.11.4 -->
-        <script src="public/admin/js/jquery-ui.min.js"></script>
-        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
         <!-- Bootstrap 3.3.7 -->
         <script src="public/admin/js/bootstrap.min.js"></script>
-        <!-- Morris.js charts -->
-        <script src="public/admin/js/raphael.min.js"></script>
-        <script src="public/admin/js/morris.min.js"></script>
+        
         <!-- Sparkline -->
         <script src="public/admin/js/jquery.sparkline.min.js"></script>
-        <!-- jvectormap -->
-        <script src="public/admin/js/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="public/admin/js/jquery-jvectormap-world-mill-en.js"></script>
         <!-- jQuery Knob Chart -->
         <script src="public/admin/js/jquery.knob.min.js"></script>
         <!-- daterangepicker -->
@@ -723,5 +719,6 @@
         <script src="public/admin/js/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="public/admin/js/demo.js"></script>
+        <script src="public/admin/js/custom.js"></script>
     </body>
 </html>

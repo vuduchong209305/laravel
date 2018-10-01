@@ -1,3 +1,20 @@
 ul li {
 	list-style-type: none;
 }
+
+table tr td span.block-button { display:none;}
+table tr:hover td span.block-button { display:block;}
+
+a, a:hover, a:visited {
+	color: white;
+}
+.module {
+	margin-right: 5%;
+	font-size: 16px;
+	font-weight: bold;
+	width: 150px;
+}
+
+input[type='checkbox']:hover {
+	cursor: pointer;
+}
