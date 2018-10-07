@@ -39,13 +39,15 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+                    @include('blocks.notification')
                     <table id="example1" class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
                             	<th width="5%"><input type="checkbox" class="checkall"></th>
-                                <th width="10%">Tên</th>
+                                <th width="15%">Tên</th>
+                                <th width="40%">Module</th>
                                 <th width="25%">Trạng thái</th>
-                                <th width="10%">#</th>
+                                <th width="15%">#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,10 +55,18 @@
                             <tr>
                             	<td><input type="checkbox" value="{{ $item->id }}"></td>
                                 <td>{{ $item->role_name}}</td>
-                                <td>{{ $item->status == 1 ? 'Hoạt động' : 'Không' }}</td>
+                                <td>
+                                    <?php 
+                                    echo '<pre>';
+                                    print_r(json_decode($item->module));
+                                    echo '</pre>';
+                                    ?>
+                                        
+                                </td>
+                                <td>{{ $item->status == 1 ? 'Hoạt động' : 'Khóa' }}</td>
                                 <td>
 	                                <span class="btn-group block-button">
-										<button type="button" class="btn btn-info btn-sm"><a href="#"><i class="fa fa-pencil"></i></a></button>
+										<button type="button" class="btn btn-info btn-sm"><a href="{{ route('role_edit', ['id' => $item->id]) }}"><i class="fa fa-pencil"></i></a></button>
 										<button type="button" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></button>
 				                    </span>
 			                	</td>

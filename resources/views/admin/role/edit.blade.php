@@ -1,11 +1,10 @@
 @extends('admin.layout')
-@section('title', 'Thêm mới quyền')
+@section('title', 'Cập nhật quyền')
 @section('content')
 
-<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Thêm mới
+        Cập nhật
         <small>Quyền</small>
     </h1>
     <ol class="breadcrumb">
@@ -38,7 +37,7 @@
                 <!-- /.box-header -->
                 <!-- form start -->
                 @include('blocks.notification')
-                <form role="form" action="{{ route('role_store') }}" method="post">
+                <form role="form" action="{{ route('role_update', ['id' => $detail['id']]) }}" method="post">
 
                     {{ csrf_field() }}
                     <div class="box-body">
@@ -48,16 +47,18 @@
                                 <span class="input-group-addon">
                                     <input type="checkbox" id="checkall">
                                 </span>
-                                <input type="text" class="form-control" placeholder="tên quyền" required="" name="name">
+                                <input type="text" class="form-control" placeholder="tên quyền" required="" name="name" value="{{ $detail['role_name'] }}">
                             </div>
                         </div>
                         
+                        <?php $detail_module = json_decode($detail['module']); ?>
+
                         @foreach($module as $key => $items)
                         <div>
                             <span class="module badge">{{ $key }}</span>
                             @foreach($items as $item)
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="list_role[{{ $key }}][]" class="checkBoxClass" value="{{ $item }}"> {{ $item }}
+                                <input type="checkbox" name="list_role[{{ $key }}][]" class="checkBoxClass" value="{{ $item }}" > {{ $item }}
                             </label>
                             @endforeach
                         </div>
@@ -68,7 +69,7 @@
                           <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
                               <label>
-                                <input type="checkbox" name="status"> Kích hoạt
+                                <input type="checkbox" name="status" value="{{ $detail['status'] }}" {{ $detail['status'] == 1 ? 'checked' : '' }}> Kích hoạt
                             </label>
                         </div>
                     </div>

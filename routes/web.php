@@ -28,6 +28,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 		Route::group(['prefix' => 'role'], function() {
 			Route::get('index', ['as' => 'role_index', 'uses' => 'RoleController@index']);
 			Route::get('create', ['as' => 'role_create', 'uses' => 'RoleController@create']);
+			Route::post('store', ['as' => 'role_store', 'uses' => 'RoleController@store']);
+			Route::get('edit/{id}', ['as' => 'role_edit', 'uses' => 'RoleController@edit']);
+			Route::post('update/{id}', ['as' => 'role_update', 'uses' => 'RoleController@update']);
 		});
 
 	});

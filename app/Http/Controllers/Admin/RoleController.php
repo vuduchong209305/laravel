@@ -32,8 +32,8 @@ class RoleController extends Controller
     public function create()
     {
         $this->data['module'] = [
-            'User' => ['index', 'add', 'edit', 'delete'],
-            'News' => ['index', 'add', 'edit', 'delete'],
+            'User'   => ['index', 'add', 'edit', 'delete'],
+            'News'   => ['index', 'add', 'edit', 'delete'],
             'Member' => ['index', 'add', 'edit', 'delete']
         ];
 
@@ -48,7 +48,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = new Role;
+        if(empty($request->list_role)) {
+            return back()->with('error', 'Vui lòng chọn Module quyền');
+        }
+        $role->role_name = $request->name;
+        $role->module = json_encode($request->list_role);
+        $role->status = $request->status == 'on' ? 1 : 0;
+        $role->save();
+
+        return redirect()->route('role_index')->with('success', 'Thêm thành công');
     }
 
     /**
@@ -70,7 +79,15 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->data['detail'] = Role::find($id);
+
+        $this->data['module'] = [
+            'User'   => ['index', 'add', 'edit', 'delete'],
+            'News'   => ['index', 'add', 'edit', 'delete'],
+            'Member' => ['index', 'add', 'edit', 'delete']
+        ];
+
+        return view('admin.role.edit', $this->data);
     }
 
     /**
@@ -82,7 +99,11 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::find($id);
+        $role->status = !isset($request->status) ? 0 : 1;
+        $role->save();
+
+        return redirect()->route('role_index')->with('success', 'Cập nhật thành công');
     }
 
     /**
