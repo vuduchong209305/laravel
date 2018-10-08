@@ -54,15 +54,8 @@
                         	@foreach($list_record as $item)
                             <tr>
                             	<td><input type="checkbox" value="{{ $item->id }}"></td>
-                                <td>{{ $item->role_name}}</td>
-                                <td>
-                                    <?php 
-                                    echo '<pre>';
-                                    print_r(json_decode($item->module));
-                                    echo '</pre>';
-                                    ?>
-                                        
-                                </td>
+                                <td>{{ $item->role_name }}</td>
+                                <td>{{ $item->module }}</td>
                                 <td>{{ $item->status == 1 ? 'Hoạt động' : 'Khóa' }}</td>
                                 <td>
 	                                <span class="btn-group block-button">

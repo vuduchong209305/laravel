@@ -36,11 +36,14 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                @include('blocks.notification')
+                
                 <form role="form" action="{{ route('role_update', ['id' => $detail['id']]) }}" method="post">
 
                     {{ csrf_field() }}
                     <div class="box-body">
+
+                        @include('blocks.notification')
+
                         <div class="form-group">
                             <label for="">Tên quyền</label>
                             <div class="input-group">
@@ -58,7 +61,7 @@
                             <span class="module badge">{{ $key }}</span>
                             @foreach($items as $item)
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="list_role[{{ $key }}][]" class="checkBoxClass" value="{{ $item }}" > {{ $item }}
+                                <input type="checkbox" name="list_role[]" class="checkBoxClass" value="{{ $key.'_'.$item }}"> {{ $key.'_'.$item }}
                             </label>
                             @endforeach
                         </div>

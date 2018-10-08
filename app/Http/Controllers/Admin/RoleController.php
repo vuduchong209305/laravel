@@ -31,11 +31,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $this->data['module'] = [
-            'User'   => ['index', 'add', 'edit', 'delete'],
-            'News'   => ['index', 'add', 'edit', 'delete'],
-            'Member' => ['index', 'add', 'edit', 'delete']
-        ];
+        $this->data['module'] = self::module();
 
         return view('admin.role.add', $this->data);
     }
@@ -50,10 +46,11 @@ class RoleController extends Controller
     {
         $role = new Role;
         if(empty($request->list_role)) {
-            return back()->with('error', 'Vui lòng chọn Module quyền');
+            return back()->with('error', 'Vui lòng chọn ít nhất 1 module');
         }
+
         $role->role_name = $request->name;
-        $role->module = json_encode($request->list_role);
+        $role->module = implode(";", $request->list_role);
         $role->status = $request->status == 'on' ? 1 : 0;
         $role->save();
 
@@ -81,11 +78,7 @@ class RoleController extends Controller
     {
         $this->data['detail'] = Role::find($id);
 
-        $this->data['module'] = [
-            'User'   => ['index', 'add', 'edit', 'delete'],
-            'News'   => ['index', 'add', 'edit', 'delete'],
-            'Member' => ['index', 'add', 'edit', 'delete']
-        ];
+        $this->data['module'] = self::module();
 
         return view('admin.role.edit', $this->data);
     }
@@ -99,8 +92,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->list_role == NULL) {
+            return back()->with('error', 'Vui lòng chọn ít nhất 1 module');
+        }
         $role = Role::find($id);
         $role->status = !isset($request->status) ? 0 : 1;
+        $role->module = implode(";", $request->list_role);
         $role->save();
 
         return redirect()->route('role_index')->with('success', 'Cập nhật thành công');
@@ -115,5 +112,15 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public static function module()
+    {
+        return [
+            'User'   => ['index', 'add', 'edit', 'delete'],
+            'News'   => ['index', 'add', 'edit', 'delete'],
+            'Member' => ['index', 'add', 'edit', 'delete']
+        ];
+
     }
 }

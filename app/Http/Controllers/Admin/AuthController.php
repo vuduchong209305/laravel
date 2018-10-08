@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
+use App\Models\Admin\User;
 use Auth;
 
 class AuthController extends Controller
@@ -15,7 +16,7 @@ class AuthController extends Controller
             if(Auth::check()) {
                 return redirect()->route('home');
             } else {
-                return View::make('admin.login');
+                return view('admin.login');
             }
 
         } else {
@@ -43,6 +44,12 @@ class AuthController extends Controller
                 return back()->with('error', 'Đăng nhập thất bại');
 
             } else {
+
+                $user_id = Auth::user()->id;
+
+                $role = User::select('role')->where('id', $user_id)->first();
+
+                $request->session()->put('role', $role->role);
 
                 return redirect()->route('home');
 

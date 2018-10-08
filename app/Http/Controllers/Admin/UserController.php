@@ -20,9 +20,19 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->data['list_record'] = User::select('users.id', 'users.username', 'users.avatar', 'users.phone', 'users.email', 'r.role_name')->join('roles as r', 'users.role', '=', 'r.id')->get();
+        if($this->check_role('User_index')) {
 
-        return view('admin.user.index', $this->data);
+            $this->data['list_record'] = User::select('users.id', 'users.username', 'users.avatar', 'users.phone', 'users.email', 'r.role_name')->join('roles as r', 'users.role', '=', 'r.id')->get();
+
+            return view('admin.user.index', $this->data);
+
+        } else {
+
+            return view('admin.page404');
+
+        }
+
+        
     }
 
     /**
