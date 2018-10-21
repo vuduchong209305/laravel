@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 		Route::group(['prefix' => 'user'], function() {
 			Route::get('index', ['as' => 'user_index', 'uses' => 'UserController@index']);
 			Route::get('create', ['as' => 'user_create', 'uses' => 'UserController@create']);
+			Route::post('store', ['as' => 'user_store', 'uses' => 'UserController@store']);
 		});
 
 		Route::group(['prefix' => 'role'], function() {

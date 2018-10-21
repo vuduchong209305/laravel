@@ -76,7 +76,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $this->data['detail'] = Role::find($id);
+        $this->data['detail'] = Role::findOrFail($id);
 
         $this->data['module'] = self::module();
 
@@ -95,7 +95,7 @@ class RoleController extends Controller
         if($request->list_role == NULL) {
             return back()->with('error', 'Vui lòng chọn ít nhất 1 module');
         }
-        $role = Role::find($id);
+        $role = Role::findOrFail($id);
         $role->status = !isset($request->status) ? 0 : 1;
         $role->module = implode(";", $request->list_role);
         $role->save();

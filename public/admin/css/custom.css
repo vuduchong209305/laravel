@@ -18,3 +18,11 @@ a, a:hover, a:visited {
 input[type='checkbox']:hover {
 	cursor: pointer;
 }
+
+.preview_image {
+	max-width: 200px;
+}
+
+.fa {
+	cursor: pointer;
+}

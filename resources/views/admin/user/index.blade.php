@@ -46,8 +46,9 @@
                                 <th width="10%">Avatar</th>
                                 <th width="20%">Tài khoản</th>
                                 <th width="15%">Quyền</th>
-                                <th width="20%">Email</th>
-                                <th width="20%">Phone</th>
+                                <th width="15%">Email</th>
+                                <th width="15%">Phone</th>
+                                <th width="10%">Ẩn/Hiện</th>
                                 <th width="10%">#</th>
                             </tr>
                         </thead>
@@ -55,11 +56,14 @@
                         	@foreach($list_record as $item)
                             <tr>
                             	<td><input type="checkbox" value="{{ $item->id }}"></td>
-                                <td>{{ $item->avatar}}</td>
+                                <td>
+                                    <img src="{{ !$item->avatar ? asset('storage/app/avatar/no_image.png') : asset('storage/app/'.$item->avatar) }}" alt="{{ $item->username }}" width="100%">
+                                </td>
                                 <td>{{ $item->username }}</td>
                                 <td>{{ $item->role_name }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->phone }}</td>
+                                <td>{{ $item->status == 1 ? 'Hiện' : 'Ẩn' }}</td>
                                 <td>
 	                                <span class="btn-group block-button">
 										<button type="button" class="btn btn-info btn-sm"><a href="#"><i class="fa fa-pencil"></i></a></button>

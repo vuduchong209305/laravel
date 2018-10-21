@@ -22,7 +22,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                   
+
                     <div class="btn-group">
                         <button type="button" class="btn btn-info"><a href="{{ route('user_index') }}"><i class="fa fa-list"></i> Danh sách</a></button>
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -37,27 +37,32 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" method="post" enctype="multipart/form-data" action="{{ route('user_store') }}">
+
+                    {{ csrf_field() }}
                     <div class="box-body">
+
+                        @include('blocks.notification')
+
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input type="email" class="form-control" placeholder="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Password</label>
-                            <input type="password" class="form-control" placeholder="password">
+                            <input type="email" name="email" class="form-control" placeholder="email" required="required">
                         </div>
                         <div class="form-group">
                             <label for="">Username</label>
-                            <input type="text" class="form-control" placeholder="username">
+                            <input type="text" name="username" class="form-control" placeholder="username" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="password" required="required">
                         </div>
                         <div class="form-group">
                             <label for="">Phone</label>
-                            <input type="text" class="form-control" placeholder="phone">
+                            <input type="text" name="phone" class="form-control" placeholder="phone" required="required">
                         </div>
                         <div class="form-group">
                             <label>Quyền</label>
-                            <select class="form-control">
+                            <select class="form-control" name="role" required="required">
                                 @foreach($list_role as $item)
                                 <option value="{{ $item->id }}">{{ $item->role_name }}</option>
                                 @endforeach
@@ -65,15 +70,17 @@
                         </div>
                         <div class="form-group">
                             <label for="">Avatar</label>
-                            <img src="public/admin/img/no_image.png" alt="">
-                            <input type="hidden" >
-                            <a class="btn btn-app">
+                            <img src="/storage/app/avatar/no_image.png" alt="" class="preview_image">
+                            <input type="file" name="avatar" class="hidden imgUpload" accept="image/*">
+                            <i class="fa fa-close remove_preview"></i>
+                            <a class="btn btn-app btn_select" >
                                 <i class="fa fa-upload"></i> Chọn ảnh
                             </a>
-                            <p class="help-block">Example block-level help text here.</p>
+
+                            <p class="help-block">Dung lượng ảnh <= 2MB.</p>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox"> Check me out</label>
+                            <label><input type="checkbox" name="status"> Khóa</label>
                         </div>
                     </div>
                     <!-- /.box-body -->
